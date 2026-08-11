@@ -29,6 +29,17 @@ npm install
 npm run dev
 ```
 
+### Docker Setup
+
+If Docker is installed, you can run both services together from the repo root:
+
+```bash
+cd CommunityOS
+docker compose up --build
+```
+
+This starts the backend on `http://localhost:8000` and the frontend on `http://localhost:5173`.
+
 ### Access
 - **Frontend:** http://localhost:5173
 - **Backend API:** http://127.0.0.1:8000

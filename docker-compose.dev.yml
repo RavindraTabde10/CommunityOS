@@ -1,0 +1,58 @@
+# Development docker-compose with hot reload and debugging
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: communityos-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+    volumes:
+      - backend_data:/app/data
+      - ./backend/app:/app/app  # Hot reload
+      - ./backend/alembic:/app/alembic
+    networks:
+      - communityos-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: "/api/v1"
+    container_name: communityos-frontend
+    restart: unless-stopped
+    ports:
+      - "5173:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - communityos-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/index.html"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  backend_data:
+    driver: local
+
+networks:
+  communityos-network:
+    driver: bridge

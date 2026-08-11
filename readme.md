@@ -98,6 +98,33 @@ A complete operating system for residential societies — eliminating communicat
 | Email | Resend / Amazon SES |
 | Hosting (frontend) | Vercel |
 | Hosting (backend) | Railway / AWS / GCP |
+| Deployment | Docker + AWS EC2 |
+
+---
+
+## 🚢 Docker Deployment
+
+A Dockerized deployment supports local development and AWS EC2 hosting using `docker compose`.
+
+### Local containerized startup
+
+```bash
+cd CommunityOS
+docker compose up --build
+```
+
+This starts:
+- Backend on `http://localhost:8000`
+- Frontend on `http://localhost:5173`
+
+### Production on AWS EC2
+
+1. Launch an EC2 instance with Docker installed.
+2. Clone this repository onto the instance.
+3. Run `docker compose up --build -d`.
+4. Open the instance public IP in a browser.
+
+For full AWS EC2 deployment instructions, see `docs/AWS_EC2_DOCKER_DEPLOYMENT.md`.
 
 ---
 
