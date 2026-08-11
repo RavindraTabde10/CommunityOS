@@ -26,6 +26,12 @@ society_management_app/
 ├── IMPLEMENTATION_CHECKLIST.md  # Feature completion tracker
 ├── README.md             # Main project README
 └── .gitignore            # Git ignore rules
+├── docker-compose.yml    # Local Docker orchestration for backend and frontend
+├── backend/Dockerfile    # Backend Docker image build definition
+├── backend/.dockerignore # Files excluded from backend image build
+├── frontend/Dockerfile   # Frontend Docker image build definition
+├── frontend/nginx.conf   # NGINX routing for frontend + API proxy
+├── frontend/.dockerignore# Files excluded from frontend image build
 ```
 
 ### Purpose of Root-Level Documents

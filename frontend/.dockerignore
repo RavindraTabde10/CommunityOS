@@ -1,0 +1,51 @@
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json.bak
+
+# Build outputs
+dist/
+build/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Version control
+.git
+.gitignore
+.github/
+
+# Docker
+Dockerfile*
+docker-compose.yml
+.dockerignore
+
+# Development
+.npm/
+.eslintcache
+*.log
+logs/
+
+# Documentation
+*.md
+docs/
+.plans/
+
+# Testing
+coverage/
+.nyc_output/
